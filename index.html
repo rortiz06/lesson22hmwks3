@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Charge Calculation</title>
+    <style>
+        .tableclass {
+            border: 10px solid green;
+            margin: 0 0 0 0;
+        }
+
+        img {
+            width: 100 px;
+            height: auto;
+            border-radius: 20%;
+        }
+
+        body {
+            background: linear-gradient(to right, darkgreen 0%, greenyellow 100%);
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    </head>
+
+    <body>
+
+        <table class="tableclass">
+            <tr>
+                <td>
+
+                    <h1> Meal Charge Calculation</h1>
+                    <p>Calculate total meal cost. Tax is 8.25% of meal cost. Tip is 15% of meal cost.
+                    </p>
+<p>Total meal cost is equal to the meal cost plus the tax and plus the tip</p>
+
+                    <table>
+                        <tr>
+                            
+                            <td id="display">Enter Meal Cost:<input name="MealCostFm" size="10"></td>
+                            
+
+                                <form name="theform">
+
+                                    <table>
+                                        <tr>
+                                            <td> <strong>Description Price</strong></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Meal Cost</td>
+                                            <td><input name="MealCostFm" size="10"><br></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax(8.25 %):</td>
+                                            <td><input name="TaxFm" size="10"><br></td>
+                                        </tr>
+
+                                        <td>Tips (15%):</td>
+                                        <td><input name="tollsFM" size="10"><br></td>
+                        </tr>
+                        <tr>
+
+                            <td>Total:</td>
+                            <td>
+                                <h2 id="total"></h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="button" name="calc" value="Calculate" onclick="calculate();">
+                            </td>
+                            <td><input type="button" name="clear" value="Clear" onclick="clearinfo();"></td>
+                        </tr>
+                    </table>
+
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+
+        <body>
+            <script>
+
+
+                function calculate() {
+
+                    const taxAmount = .825;
+                    const tipAmount = .15;
+
+
+                    var MealCost;
+                    var Tax;
+                    var Tip;
+                    var total;
+
+
+                    MealCost = parseInt(document.MealCostFM.value);
+
+
+
+
+
+                    total = parseFloat((MealCost * taxAmount) * tipAmount);
+
+                    document.querySelector('h2').innerHTML = "$ " + total.toFixed(2)
+
+                }
+            </script>
+            </td>
+            </tr>
+            </table>
+
+        </body>
+
+        <p></p>
+
+        <a href="http://csnet.southtexascollege.edu/localuser/rortiz84/">Go Back to HomePage</a><br>
+        <p style="color: black;"> Roy Ortiz</p><br>
+
+    </body>
+
+</html>
