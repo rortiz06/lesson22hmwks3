@@ -7,20 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Charge Calculation</title>
     <style>
-        .tableclass {
+        body {
+            background: linear-gradient(to right, darkgreen 0%, greenyellow 100%);
+            font-size: 25px;
+        }
+
+        .tableclass{
             border: 10px solid green;
             margin: 0 0 0 0;
+            padding: 7px;
+        }
+
+        td {
+            width: 50rem;
+            text-align: left;
+            align-items: left;
+        }
+
+        div {
+            display: block;
+            width: 10rem;
+            background-color: white;
+            padding: 0.25rem;
+            color: black;
         }
 
         img {
             width: 100 px;
             height: auto;
             border-radius: 20%;
-        }
-
-        body {
-            background: linear-gradient(to right, darkgreen 0%, greenyellow 100%);
-            font-size: 25px;
         }
     </style>
 </head>
@@ -36,52 +51,67 @@
             <tr>
                 <td>
 
-                    <h1> Meal Charge Calculation</h1>
+                    <h1>Meal Charge Calculation</h1>
                     <p>Calculate total meal cost. Tax is 8.25% of meal cost. Tip is 15% of meal cost.
                     </p>
-<p>Total meal cost is equal to the meal cost plus the tax and plus the tip</p>
+                    <p>Total meal cost is equal to the meal cost plus the tax and plus the tip</p>
 
                     <table>
                         <tr>
-                            
-                            <td id="display">Enter Meal Cost:<input name="MealCostFm" size="10"></td>
-                            
 
-                                <form name="theform">
-
-                                    <table>
-                                        <tr>
-                                            <td> <strong>Description Price</strong></td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>Meal Cost</td>
-                                            <td><input name="MealCostFm" size="10"><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tax(8.25 %):</td>
-                                            <td><input name="TaxFm" size="10"><br></td>
-                                        </tr>
-
-                                        <td>Tips (15%):</td>
-                                        <td><input name="tollsFM" size="10"><br></td>
+                          
                         </tr>
-                        <tr>
-
-                            <td>Total:</td>
-                            <td>
-                                <h2 id="total"></h2>
+                        <form name="theform">
+                            <td id="display">Enter Meal Cost:
+                                <input id="InputCost" size="10">
                             </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="button" name="calc" value="Calculate" onclick="calculate();">
-                            </td>
-                            <td><input type="button" name="clear" value="Clear" onclick="clearinfo();"></td>
-                        </tr>
-                    </table>
 
-                    </form>
+
+                            <table>
+                                <tr>
+                                    <td rowspan="5"><img src="food.jpg" alt="Picutre of food">
+                                        <td><strong>Description Price</strong></td>
+                                       
+                                </tr>
+                                
+                              <tr>
+                                <td>Meal Cost</td>
+                                <td>
+                                    <div id="MealCost" size="10"><br>
+                                </td>
+                              </tr>
+
+                                
+                               
+                                <tr>
+                                    <td>Tax(8.25 %):</td>
+                                    <td>
+                                        <div id="Tax" size="10"><br>
+                                    </td>
+                                </tr>
+
+                                <td>Tips (15%):</td>
+                                <td>
+                                    <div id="Tips" size="10"><br>
+                                </td>
+
+                                <tr>
+
+                                    <td>Total:</td>
+                                    <td>
+                                        <h2 id="Total"></h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="button" name="calc" value="Calculate"
+                                            onclick="calculate();">
+
+                                        <input type="button" name="clear" value="Clear" onclick="clearinfo();">
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
                 </td>
             </tr>
         </table>
@@ -89,39 +119,47 @@
 
         <body>
             <script>
+                const taxAmount = .0825;
+                const tipAmount = .15;
 
+                function calculate() { // Calculate Meal, Tax & Tip Cost
 
-                function calculate() {
+                    let MealCost = parseFloat(document.getElementById("InputCost").value);
 
-                    const taxAmount = .825;
-                    const tipAmount = .15;
+                    console.log(MealCost);
 
+                    if (isNaN(MealCost)) {
+                        // Show Error for number error.
+                        document.getElementById("Total").innerHTML = "Error invalid price entered!";
+                        console.log("NaN Detected.");
+                    } else {
+                        console.log("No number error.");
 
-                    var MealCost;
-                    var Tax;
-                    var Tip;
-                    var total;
+                        let tax = MealCost * taxAmount;
+                        let tip = MealCost * tipAmount;
+                        let total = (MealCost + tax + tip).toFixed(2);
 
-
-                    MealCost = parseInt(document.MealCostFM.value);
-
-
-
-
-
-                    total = parseFloat((MealCost * taxAmount) * tipAmount);
-
-                    document.querySelector('h2').innerHTML = "$ " + total.toFixed(2)
-
+                        document.getElementById("MealCost").innerHTML = "$ " + MealCost.toFixed(2);
+                        document.getElementById("Tax").innerHTML = "$ " + tax.toFixed(2);
+                        document.getElementById("Tips").innerHTML = "$ " + tip.toFixed(2);
+                        document.getElementById("Total").innerHTML = "$ " + total;
+                    }
                 }
+
+                function clearinfo() { // Clear entered or Errored output.
+                    document.getElementById("InputCost").value = "";
+                    document.getElementById("MealCost").innerHTML = "<br>";
+                    document.getElementById("Tax").innerHTML = "<br>";
+                    document.getElementById("Tips").innerHTML = "<br>";
+                    document.getElementById("Total").innerHTML = "<br>";
+                }
+
+                
             </script>
-            </td>
-            </tr>
-            </table>
 
         </body>
 
-        <p></p>
+        <br>
 
         <a href="http://csnet.southtexascollege.edu/localuser/rortiz84/">Go Back to HomePage</a><br>
         <p style="color: black;"> Roy Ortiz</p><br>
